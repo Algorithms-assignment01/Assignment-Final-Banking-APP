@@ -109,34 +109,33 @@ public class BankingApp{
 
         }while(true);
 
-        // case DIPOSITS:
-        //             String id;
-        //             String name;
-        //             boolean valid;
-        //             System.out.printf(id="Account ID: SDB-%05d ", (accounts.length + 1));
-
-        //             // Name Validation
-        //              name = getUserInput("name");
-        //             //do{
-        //                 // valid = true;
-        //                 // System.out.print("\tEnter Account Name: ");
-        //                 // name = SCANNER.nextLine().strip();
-        //                 // if (name.isBlank()){
-        //                 //     System.out.printf(ERROR_MSG, "Account name can't be empty");
-        //                 //     valid = false;
-        //                 //     continue;
-        //                 // }
-        //                 // for (int i = 0; i < name.length(); i++) {
-        //                 //     if (!(Character.isLetter(name.charAt(i)) || 
-        //                 //         Character.isSpaceChar(name.charAt(i))) ) {
-        //                 //         System.out.printf(ERROR_MSG, "Invalid name");
-        //                 //         valid = false;
-        //                 //         break;
-        //                 //     }
-        //                // }
+        case DIPOSITS:
+                    int acNum;
+        
+                    boolean valid;
+       
+      
+        
+                    do{
+                        valid = true;
+                        System.out.print("\tEnter Account Number: ");
+                        acNum = SCANNER.nextInt();
+                        if (acNum.isBlank()){
+                            System.out.printf(ERROR_MSG, "Account number can't be empty");
+                            valid = false;
+                            continue;
+                        }
+                        for (int i = 0; i < acNum.length(); i++) {
+                            if (!(Character.isDigit(name.charAt(i)) || 
+                                Character.isSpaceChar(name.charAt(i))) ) {
+                                System.out.printf(ERROR_MSG, "Invalid number");
+                                valid = false;
+                                break;
+                            }
+                       }
                       
                        
-        //             //}while (!valid);
+                    }while (!valid);
     }
      public static String getUserInput(String input){
                             boolean valid;
