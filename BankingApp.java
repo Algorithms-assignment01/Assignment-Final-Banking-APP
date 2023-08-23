@@ -3,32 +3,31 @@ import java.util.Scanner;
 
 public class BankingApp{
     private static final Scanner SCANNER = new Scanner(System.in);
+    final static String CLEAR = "\033[H\033[2J";
+    final static String COLOR_BLUE_BOLD = "\033[34;1m";
+    final static String COLOR_RED_BOLD = "\033[31;1m";
+    final static String COLOR_GREEN_BOLD = "\033[33;1m";
+    final static String RESET = "\033[0m";
+
+    final static String DASHBOARD = " Welcome to Smart Banking";
+    final static String CREATE_ACCOUNT = "Create New Account";
+    final static String DIPOSITS = "Deposits";
+    final static String WITHDRAWLS = "Withdrawls";
+    final static String TRANSFER = "Transfer";
+    final static String CHECK_BALANCE = "Check Account Balance";
+    final static String DELETE_ACCOUNT = "Delete Account";
+
+    final static String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
+    final static String SUCCESS_MSG = String.format("\t%s%s%s\n", COLOR_GREEN_BOLD, "%s", RESET);
+
+    static String[][] accounts = new String[0][];
+    static String[][] newAccounts = new String[accounts.length + 1][2];
+
 
     public static void main(String[] args) {
-        final String CLEAR = "\033[H\033[2J";
-        final String COLOR_BLUE_BOLD = "\033[34;1m";
-        final String COLOR_RED_BOLD = "\033[31;1m";
-        final String COLOR_GREEN_BOLD = "\033[33;1m";
-        final String RESET = "\033[0m";
-
-        final String DASHBOARD = " Welcome to Smart Banking";
-        final String CREATE_ACCOUNT = "Create New Account";
-        final String DIPOSITS = "Deposits";
-        final String WITHDRAWLS = "Withdrawls";
-        final String TRANSFER = "Transfer";
-        final String CHECK_BALANCE = "Check Account Balance";
-        final String DELETE_ACCOUNT = "Delete Account";
-        //final String EXIT = "Exit";
-
-        final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
-        final String SUCCESS_MSG = String.format("\t%s%s%s\n", COLOR_GREEN_BOLD, "%s", RESET);
-
-        String[][] accounts = new String[0][];
-        String[][] newAccounts = new String[accounts.length + 1][2];
+       
 
         String screen = DASHBOARD;
-
-        
         
         do{
             final String APP_TITLE = String.format("%s%s%s",
@@ -110,7 +109,7 @@ public class BankingApp{
         }while(true);
 
         case DIPOSITS:
-                    int acNum;
+                    //int acNum;
         
                     boolean valid;
        
@@ -119,20 +118,20 @@ public class BankingApp{
                     do{
                         valid = true;
                         System.out.print("\tEnter Account Number: ");
-                        acNum = SCANNER.nextInt();
-                        if (acNum.isBlank()){
-                            System.out.printf(ERROR_MSG, "Account number can't be empty");
-                            valid = false;
-                            continue;
-                        }
-                        for (int i = 0; i < acNum.length(); i++) {
-                            if (!(Character.isDigit(name.charAt(i)) || 
-                                Character.isSpaceChar(name.charAt(i))) ) {
-                                System.out.printf(ERROR_MSG, "Invalid number");
-                                valid = false;
-                                break;
-                            }
-                       }
+                        //acNum = SCANNER.nextInt();
+                        // if (acNum.isBlank()){
+                        //     System.out.printf(ERROR_MSG, "Account number can't be empty");
+                        //     valid = false;
+                        //     continue;
+                        // }
+                        // for (int i = 0; i < acNum.length(); i++) {
+                        //     if (!(Character.isDigit(name.charAt(i)) || 
+                        //         Character.isSpaceChar(name.charAt(i))) ) {
+                        //         System.out.printf(ERROR_MSG, "Invalid number");
+                        //         valid = false;
+                        //         break;
+                        //     }
+                       
                       
                        
                     }while (!valid);
