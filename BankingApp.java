@@ -23,6 +23,8 @@ public class BankingApp{
     static String[][] accounts = new String[0][];
     static String[][] newAccounts = new String[accounts.length + 1][2];
 
+    static int id=1;
+
 
     public static void main(String[] args) {
        
@@ -62,80 +64,117 @@ public class BankingApp{
                     break;
 
                     case CREATE_ACCOUNT:
-                    String id;
+                    
                     String name;
                     boolean valid;
-                    System.out.printf(id="Account ID: SDB-%05d ", (accounts.length + 1));
+                    String ID=String.format("SDB-%05d",id);
+                    System.out.print(ID);
 
                    
                      name = getUserInput("name");
                   
-                    
+                   
 
                     do{
                         valid = true;
                         System.out.print("\tEnter Initial Deposit: ");
                         int deposits = SCANNER.nextInt();
+                        SCANNER.nextLine();
                         if (deposits<5000){
                             System.out.printf(ERROR_MSG, "Insufficient Account Balance");
                             valid = false;
                         continue;
                         }
-
+                    }while (!valid);
                             
                             for (int i = 0; i < accounts.length; i++) {
                                 newAccounts[i] = accounts[i];
                             }
                     
-                    newAccounts[newAccounts.length - 1][0]= id;
+                    newAccounts[newAccounts.length - 1][0]= ID;
                     newAccounts[newAccounts.length - 1][1] = name;
                     accounts = newAccounts;
                     
-
+                           
                    
 
                     System.out.println();
                     System.out.printf(SUCCESS_MSG, 
-                        String.format("%s:%s has been saved successfully", id, name));
+                        String.format("%s:%s has been saved successfully",ID , name));
+                       
+                        id++;
                     System.out.print("\tDo you want to continue adding (Y/n)? ");
                     String input=SCANNER.nextLine();
-                    if (SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue;
+                    if (input.strip().toUpperCase().equals("Y")) continue;
                     else screen = DASHBOARD;
-                    break;}while (!valid);
-                    }
+                    //break;
                 
-                
+               
+                    
+        //         for(int i=0; i<accounts.length(); i++){
+        //          System.out.println(Arrays.toString(accounts[i][0]));
 
-        }while(true);
+        //         }
 
-        case DIPOSITS:
-                    //int acNum;
+                    case DIPOSITS:
+                   
         
-                    boolean valid;
+                    
+                    String ac =accountNum();
        
       
         
-                    do{
+       
+        //                 for(int i=0; i<accounts[i][0].length(); i++){
+        //                     if(acNum==accounts[i][0])continue;else{System.out.println("Not valid");}
+
+        //                 }
+
+        //                 System.out.printf();
+                       
+    //                 }while (!valid);
+                }
+         }while(true);      
+
+     }
+
+     public static String accountNum(){ 
+                    String acNum;
+                    boolean valid;
+        
+                     do{
                         valid = true;
                         System.out.print("\tEnter Account Number: ");
-                        //acNum = SCANNER.nextInt();
-                        // if (acNum.isBlank()){
-                        //     System.out.printf(ERROR_MSG, "Account number can't be empty");
-                        //     valid = false;
-                        //     continue;
-                        // }
-                        // for (int i = 0; i < acNum.length(); i++) {
-                        //     if (!(Character.isDigit(name.charAt(i)) || 
-                        //         Character.isSpaceChar(name.charAt(i))) ) {
-                        //         System.out.printf(ERROR_MSG, "Invalid number");
-                        //         valid = false;
-                        //         break;
-                        //     }
-                       
-                      
-                       
-                    }while (!valid);
-    }
+                        acNum = SCANNER.nextLine();
+                        if (acNum.isBlank()){
+                            System.out.printf(ERROR_MSG, "Account number can't be empty");
+                            valid = false;
+                            //continue;
+                        }
+
+                        else if (!acNum.startsWith("SDB-") || acNum.length() < 9){
+                        System.out.printf(ERROR_MSG, "Invalid ID format");
+                        valid = false;//continue;
+                        }
+                        
+                          else { String number = acNum.substring(4);
+                            for (int i = 0; i < number.length(); i++) {
+                                if (!Character.isDigit(number.charAt(i))){
+                                    System.out.printf(ERROR_MSG, "Invalid ID format");
+                                    valid = false;//continue;
+                                    
+                                    //break;
+
+
+                                }
+                            
+                        }//else{}
+                    }
+        
+                    }while(!valid);
+                    return acNum;
+     }
+
      public static String getUserInput(String input){
                             boolean valid;
                             String value;
@@ -166,6 +205,7 @@ public class BankingApp{
                                     }
                                 }            
                             }while (!valid);
-                            return value;} 
+                            return value;
+                        } 
                                 
                         }
