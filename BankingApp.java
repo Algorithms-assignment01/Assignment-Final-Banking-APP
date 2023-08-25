@@ -125,6 +125,36 @@ public class BankingApp{
                     idRefFind =accountNum();
                     System.out.printf("CurrentBalance : Rs. %,.2f\n",accountBalance[idRefFind]);
 
+
+
+
+
+                    case WITHDRAWALS:
+
+                    //A/C number validation
+                    indexToSearch = accountNumberValidation(ERROR_MSG, userDetails,"");
+
+                    System.out.printf("CurrentBalance : Rs %,.2f\n",userAccountBal[indexToSearch]);
+                    amount=validateWithdrawalAmount(userAccountBal, indexToSearch, ERROR_MSG);
+
+                    userAccountBal[indexToSearch]-=amount;
+                    
+                    
+                    System.out.printf("New balance : Rs %,.2f\n",userAccountBal[indexToSearch]);
+                    
+                    System.out.print("\tDo you want to continue  (Y/n)? ");
+                    if (SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue;
+                    screen = DASHBOARD;
+                    break;
+
+
+
+
+                    
+
+               
+               
+               
                 }
          }while(true);      
 
