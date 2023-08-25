@@ -72,8 +72,7 @@ public class BankingApp{
 
                    
                      name = getUserInput("name");
-                  
-                   
+                
 
                     do{
                         valid = true;
@@ -94,13 +93,15 @@ public class BankingApp{
                     newAccounts[newAccounts.length - 1][0]= ID;
                     newAccounts[newAccounts.length - 1][1] = name;
                     accounts = newAccounts;
-                    
-                           
-                   
+               
 
                     System.out.println();
                     System.out.printf(SUCCESS_MSG, 
                         String.format("%s:%s has been saved successfully",ID , name));
+
+                    //    for(int j=0;j<accounts[j][0].length();j++){
+                    //     System.out.println(accounts[j][0]);break;
+                    //    }
                        
                         id++;
                     System.out.print("\tDo you want to continue adding (Y/n)? ");
@@ -108,40 +109,23 @@ public class BankingApp{
                     if (input.strip().toUpperCase().equals("Y")) continue;
                     else screen = DASHBOARD;
                     break;
-                
-               
-                    
-        //         for(int i=0; i<accounts.length(); i++){
-        //          System.out.println(Arrays.toString(accounts[i][0]));
-
-        //         }
-
+            
+       
                     case DIPOSITS:
                    
-        
-                    
-                    String ac =accountNum();
+                    int ac =accountNum();
                     //System.out.println(ac);
        
-      
-        
-       
-        //                 for(int i=0; i<accounts[i][0].length(); i++){
-        //                     if(acNum==accounts[i][0])continue;else{System.out.println("Not valid");}
-
-        //                 }
-
-        //                 System.out.printf();
-                       
     //                 }while (!valid);
                 }
          }while(true);      
 
      }
 
-     public static String accountNum(){ 
+     public static int accountNum(){ 
                     String acNum;
                     boolean valid;
+                    int idRef = -1;
         
                      do{
                         valid = true;
@@ -158,25 +142,31 @@ public class BankingApp{
                         valid = false;continue;
                         }
                         
-                           String number = acNum.substring(4);
+                        String number = acNum.substring(4);
                             for (int i = 0; i < number.length(); i++) {
                                 if (!Character.isDigit(number.charAt(i))){
                                     System.out.printf(ERROR_MSG, "Invalid ID format");
                                     valid = false;continue;
                                     
                                     //break;
-
-
-                                }
+                                 }
                             
-                        }//else{}
-                    }//else()
+                        }
+                        for(int i=0; i<accounts[i][0].length(); i++){
+                            if(acNum.equals(accounts[i][0])){
+                                idRef=i;
+                                valid=true;
+                                break;
+                            }
+                            
+                            
+                        }
+                        if(idRef==-1)System.out.printf(ERROR_MSG,"ID not found");
+                    }while(!valid);
+                    return idRef;
         
-                    while(!valid);
-                    return acNum;
                 }
      
-
      public static String getUserInput(String input){
                             boolean valid;
                             String value;
