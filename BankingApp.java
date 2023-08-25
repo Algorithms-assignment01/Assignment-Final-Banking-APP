@@ -22,8 +22,14 @@ public class BankingApp{
 
     static String[][] accounts = new String[0][];
     static String[][] newAccounts = new String[accounts.length + 1][2];
+    static double[] accountBalance = new double[0];
+    static double[] newAccountBalance = new double[accountBalance.length+1];
 
     static int id=1;
+    static String acNum;
+    static int idRef = -1;
+    static int idRefFind = 0;
+    static int deposits;
 
 
     public static void main(String[] args) {
@@ -93,15 +99,18 @@ public class BankingApp{
                     newAccounts[newAccounts.length - 1][0]= ID;
                     newAccounts[newAccounts.length - 1][1] = name;
                     accounts = newAccounts;
-               
+
+                      for (int i = 0; i < accountBalance.length; i++) {
+                                newAccountBalance[i] = accountBalance[i];
+                            }
+                    newAccountBalance[newAccountBalance.length-1]=deposits;
+                    accountBalance = newAccountBalance;
 
                     System.out.println();
                     System.out.printf(SUCCESS_MSG, 
                         String.format("%s:%s has been saved successfully",ID , name));
 
-                    //    for(int j=0;j<accounts[j][0].length();j++){
-                    //     System.out.println(accounts[j][0]);break;
-                    //    }
+                   
                        
                         id++;
                     System.out.print("\tDo you want to continue adding (Y/n)? ");
@@ -113,19 +122,17 @@ public class BankingApp{
        
                     case DIPOSITS:
                    
-                    int ac =accountNum();
-                    //System.out.println(ac);
-       
-    //                 }while (!valid);
+                    idRefFind =accountNum();
+                    System.out.printf("CurrentBalance : Rs. %,.2f\n",accountBalance[idRefFind]);
+
                 }
          }while(true);      
 
      }
 
      public static int accountNum(){ 
-                    String acNum;
+                    
                     boolean valid;
-                    int idRef = -1;
         
                      do{
                         valid = true;
