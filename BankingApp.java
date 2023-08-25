@@ -149,8 +149,56 @@ public class BankingApp{
 
 
 
+                    case TRANSFER:
+                    //A/c check for from
+                    int indexToSearchFrom = accountNumberValidation(ERROR_MSG, userDetails, "From ");
 
+                    //A/c check for to
+                    int indexToSearchTo;
+                    do{
+                        indexToSearchTo = accountNumberValidation(ERROR_MSG, userDetails, "To ");
+                        if(indexToSearchFrom!=indexToSearchTo){
+                            break;
+                        }else{
+                            System.out.printf(ERROR_MSG,"Cannot trasfer within same account!");
+                        }
+                    }while(true);
+
+                    System.out.printf("Account name : %s \n",userDetails[indexToSearchFrom][1]);
+                    System.out.printf("From A/c balance : %,.2f\n",userAccountBal[indexToSearchFrom]);
+
+                    System.out.printf("Account name : %s \n",userDetails[indexToSearchTo][1]);
+                    System.out.printf("To A/c balance : %,.2f\n",userAccountBal[indexToSearchTo]);
+                    double amount1;
                     
+                    do{
+                        System.out.print("Enter amount : ");
+                        amount1 = SCANNER.nextDouble();
+                        SCANNER.nextLine();
+                        if(amount1<100){
+                            System.out.printf(ERROR_MSG,"Insufficent balance for transfer..Minimum tranfer amount is Rs 100.00/=");
+                            continue;
+                        }else if(userAccountBal[indexToSearchFrom]-amount1<500){
+                            System.out.printf(ERROR_MSG,"Insuffiecent amount in From account");
+                            continue;
+                        }else{
+                            break;
+                        }
+
+                    }while(true);
+
+                    System.out.printf("2%s of transfer amount will be deduct from From account \n","%");
+                    double x = userAccountBal[indexToSearchFrom];
+                    x = (x-amount1) -(x/100*2);
+                    System.out.printf("New balance of From account : Rs %,.f\n", x);
+
+                    userAccountBal[indexToSearchTo]+=amount1;
+                    System.out.printf("New balance of To account : Rs %,.2f\n" ,(userAccountBal[indexToSearchTo]));
+
+                    System.out.print("\tDo you want to continue  (Y/n)? ");
+                    if (SCANNER.nextLine().strip().toUpperCase().equals("Y")) continue;
+                    screen = DASHBOARD;
+                    break;
 
                
                
