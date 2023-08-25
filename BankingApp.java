@@ -107,7 +107,7 @@ public class BankingApp{
                     String input=SCANNER.nextLine();
                     if (input.strip().toUpperCase().equals("Y")) continue;
                     else screen = DASHBOARD;
-                    //break;
+                    break;
                 
                
                     
@@ -121,6 +121,7 @@ public class BankingApp{
         
                     
                     String ac =accountNum();
+                    //System.out.println(ac);
        
       
         
@@ -149,19 +150,19 @@ public class BankingApp{
                         if (acNum.isBlank()){
                             System.out.printf(ERROR_MSG, "Account number can't be empty");
                             valid = false;
-                            //continue;
+                            continue;
                         }
 
                         else if (!acNum.startsWith("SDB-") || acNum.length() < 9){
                         System.out.printf(ERROR_MSG, "Invalid ID format");
-                        valid = false;//continue;
+                        valid = false;continue;
                         }
                         
-                          else { String number = acNum.substring(4);
+                           String number = acNum.substring(4);
                             for (int i = 0; i < number.length(); i++) {
                                 if (!Character.isDigit(number.charAt(i))){
                                     System.out.printf(ERROR_MSG, "Invalid ID format");
-                                    valid = false;//continue;
+                                    valid = false;continue;
                                     
                                     //break;
 
@@ -169,11 +170,12 @@ public class BankingApp{
                                 }
                             
                         }//else{}
-                    }
+                    }//else()
         
-                    }while(!valid);
+                    while(!valid);
                     return acNum;
-     }
+                }
+     
 
      public static String getUserInput(String input){
                             boolean valid;
